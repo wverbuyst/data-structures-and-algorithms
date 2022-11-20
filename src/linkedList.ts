@@ -12,15 +12,20 @@ export class LinkedList {
     this.length = 1
   }
 
-  printList(): void {
+  printElements(): void {
     let temp = this.head
     let i = 0
     while (i < this.length) {
       // eslint-disable-next-line no-console
-      console.log(temp?.value)
+      console.log(`Element ${i + 1}: ${temp?.value}`)
       temp = temp?.next || null
       i++
     }
+  }
+
+  printList(): void {
+    // eslint-disable-next-line no-console
+    console.dir(this, { depth: null })
   }
 
   append(value: unknown): boolean {
