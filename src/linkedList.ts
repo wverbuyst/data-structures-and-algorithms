@@ -16,6 +16,7 @@ export class LinkedList {
     let temp = this.head
     let i = 0
     while (i < this.length) {
+      // eslint-disable-next-line no-console
       console.log(temp?.value)
       temp = temp?.next || null
       i++
