@@ -12,7 +12,7 @@ export class LinkedList {
     this.length = 1
   }
 
-  printList() {
+  printList(): void {
     let temp = this.head
     let i = 0
     while (i < this.length) {
@@ -20,5 +20,19 @@ export class LinkedList {
       temp = temp?.next || null
       i++
     }
+  }
+
+  append(value: unknown): boolean {
+    const newNode = new Node(value)
+    if (!this.tail) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      this.tail.next = newNode
+      this.tail = newNode
+    }
+
+    this.length++
+    return true
   }
 }
