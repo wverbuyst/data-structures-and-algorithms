@@ -41,4 +41,24 @@ export class LinkedList {
     this.length++
     return true
   }
+
+  pop(): Node | null {
+    if (this.head === null) {
+      return null
+    }
+    let prev = this.head
+    let temp = this.head
+    while (temp.next !== null) {
+      prev = temp
+      temp = temp?.next
+    }
+    this.tail = prev
+    this.tail.next = null
+    this.length--
+    if (this.length === 0) {
+      this.tail = null
+      this.head = null
+    }
+    return temp
+  }
 }
