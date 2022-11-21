@@ -12,5 +12,6 @@
     "moduleResolution": "node",
     "outDir": "build"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

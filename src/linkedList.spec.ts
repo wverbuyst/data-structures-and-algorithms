@@ -4,7 +4,7 @@ describe('LinkedList', () => {
   let instance: LinkedList
 
   beforeEach(() => {
-    instance = new LinkedList(1)
+    instance = new LinkedList('a')
   })
 
   it('should have properties', () => {
@@ -20,11 +20,11 @@ describe('LinkedList append method', () => {
   const instance = new LinkedList(1)
 
   it.each([
-    [2, 2],
-    [3, 3],
-    [4, 4],
-    [5, 5],
-    [6, 6],
+    ['b', 2],
+    ['c', 3],
+    ['d', 4],
+    ['e', 5],
+    ['f', 6],
   ])("should append '%s'", (value, expected) => {
     instance.append(value)
     expect(instance.head?.value).toBe(1)

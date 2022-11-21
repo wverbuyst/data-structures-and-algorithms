@@ -9,7 +9,10 @@
     "lint": "eslint . --ext .ts",
     "start": "ts-node ./src/index.ts",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:verbose": "jest --verbose",
+    "test:watch-all": "jest --watchAll"
   },
   "devDependencies": {
     "@types/jest": "^29.2.3",
