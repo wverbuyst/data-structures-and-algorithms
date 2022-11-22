@@ -35,7 +35,7 @@ describe('LinkedList append method', () => {
     ['f', 6],
   ])("should append '%s'", (value, expected) => {
     instance.append(value)
-    expect(instance.head?.value).toBe(1)
+    expect(instance.head?.value).toBe('a')
     expect(instance.tail?.value).toBe(value)
     expect(instance.length).toBe(expected)
   })
