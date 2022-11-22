@@ -1,4 +1,5 @@
 import { LinkedList } from './linkedList'
+import { Node } from './node'
 
 describe('LinkedList', () => {
   let instance: LinkedList
@@ -30,5 +31,35 @@ describe('LinkedList append method', () => {
     expect(instance.head?.value).toBe(1)
     expect(instance.tail?.value).toBe(value)
     expect(instance.length).toBe(expected)
+  })
+})
+
+describe('LinkedList pop method', () => {
+  const instance = new LinkedList('a')
+  instance.append('b')
+  instance.append('c')
+
+  it.each([
+    ['c', 2, 'a', 'b'],
+    ['b', 1, 'a', 'a'],
+  ])("should pop '%s'", (value, length, head, tail) => {
+    expect(instance.pop()?.value).toBe(value)
+    expect(instance.head?.value).toBe(head)
+    expect(instance.tail?.value).toBe(tail)
+    expect(instance.length).toBe(length)
+  })
+
+  it('should pop last element', () => {
+    expect(instance.pop()?.value).toBe('a')
+    expect(instance.head).toEqual(null)
+    expect(instance.tail).toEqual(null)
+    expect(instance.length).toBe(0)
+  })
+
+  it('should return null when list is empty', () => {
+    expect(instance.pop()).toEqual(null)
+    expect(instance.head).toEqual(null)
+    expect(instance.tail).toEqual(null)
+    expect(instance.length).toBe(0)
   })
 })
