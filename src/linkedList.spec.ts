@@ -1,5 +1,4 @@
 import { LinkedList } from './linkedList'
-import { Node } from './node'
 
 describe('LinkedList', () => {
   let instance: LinkedList
@@ -18,7 +17,15 @@ describe('LinkedList', () => {
 })
 
 describe('LinkedList append method', () => {
-  const instance = new LinkedList(1)
+  const instance = new LinkedList('z')
+
+  it('should append when list is empty', () => {
+    instance.pop()
+    instance.append('a')
+    expect(instance.head?.value).toBe('a')
+    expect(instance.tail?.value).toBe('a')
+    expect(instance.length).toBe(1)
+  })
 
   it.each([
     ['b', 2],
