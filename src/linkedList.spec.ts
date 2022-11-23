@@ -95,3 +95,34 @@ describe('LinkedList prepend method', () => {
     expect(instance.length).toBe(expected)
   })
 })
+
+describe('LinkedList popFirst method', () => {
+  let instance: LinkedList
+
+  beforeEach(() => {
+    instance = new LinkedList('z')
+  })
+
+  it('should return null when list is empty', () => {
+    instance.pop()
+    expect(instance.popFirst()).toEqual(null)
+    expect(instance.head).toEqual(null)
+    expect(instance.tail).toEqual(null)
+    expect(instance.length).toBe(0)
+  })
+
+  it('should return first node when there are two nodes', () => {
+    instance.append('zz')
+    expect(instance.popFirst()?.value).toEqual('z')
+    expect(instance.head?.value).toEqual('zz')
+    expect(instance.tail?.value).toEqual('zz')
+    expect(instance.length).toBe(1)
+  })
+
+  it('should return node when there is one node', () => {
+    expect(instance.popFirst()?.value).toEqual('z')
+    expect(instance.head).toEqual(null)
+    expect(instance.tail).toEqual(null)
+    expect(instance.length).toBe(0)
+  })
+})
