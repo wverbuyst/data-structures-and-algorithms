@@ -16,6 +16,36 @@ describe('LinkedList', () => {
   })
 })
 
+describe('LinkedList printElements', () => {
+  const instance = new LinkedList('z')
+  instance.append('zz')
+  const consoleLogMock = jest
+    .spyOn(console, 'log')
+    .mockImplementation(() => null)
+
+  instance.printElements()
+
+  it('should print values of all elements', () => {
+    expect(consoleLogMock).toBeCalledTimes(instance.length)
+    expect(consoleLogMock).toHaveBeenNthCalledWith(1, 'Element 1: z')
+    expect(consoleLogMock).toHaveBeenNthCalledWith(2, 'Element 2: zz')
+  })
+})
+
+describe('LinkedList print list', () => {
+  const instance = new LinkedList('z')
+  const consoleDirMock = jest
+    .spyOn(console, 'dir')
+    .mockImplementation(() => null)
+
+  instance.printList()
+
+  it('should print list', () => {
+    expect(consoleDirMock).toBeCalledTimes(1)
+    expect(consoleDirMock).toBeCalledWith(instance, { depth: null })
+  })
+})
+
 describe('LinkedList append method', () => {
   const instance = new LinkedList('z')
 
