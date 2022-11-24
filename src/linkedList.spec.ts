@@ -22,7 +22,6 @@ describe('LinkedList printElements', () => {
   const consoleLogMock = jest
     .spyOn(console, 'log')
     .mockImplementation(() => null)
-
   instance.printElements()
 
   it('should print values of all elements', () => {
@@ -37,7 +36,6 @@ describe('LinkedList print list', () => {
   const consoleDirMock = jest
     .spyOn(console, 'dir')
     .mockImplementation(() => null)
-
   instance.printList()
 
   it('should print list', () => {
@@ -52,6 +50,7 @@ describe('LinkedList append method', () => {
   it('should append when list is empty', () => {
     instance.pop()
     instance.append('a')
+
     expect(instance.head?.value).toBe('a')
     expect(instance.tail?.value).toBe('a')
     expect(instance.length).toBe(1)
@@ -65,6 +64,7 @@ describe('LinkedList append method', () => {
     ['f', 6],
   ])("should append '%s'", (value, expected) => {
     instance.append(value)
+
     expect(instance.head?.value).toBe('a')
     expect(instance.tail?.value).toBe(value)
     expect(instance.length).toBe(expected)
@@ -107,6 +107,7 @@ describe('LinkedList prepend method', () => {
   it('should prepend when list is empty', () => {
     instance.pop()
     instance.prepend('a')
+
     expect(instance.head?.value).toBe('a')
     expect(instance.tail?.value).toBe('a')
     expect(instance.length).toBe(1)
@@ -120,6 +121,7 @@ describe('LinkedList prepend method', () => {
     ['f', 6],
   ])("should prepend '%s'", (value, expected) => {
     instance.prepend(value)
+
     expect(instance.head?.value).toBe(value)
     expect(instance.tail?.value).toBe('a')
     expect(instance.length).toBe(expected)
@@ -135,6 +137,7 @@ describe('LinkedList popFirst method', () => {
 
   it('should return null when list is empty', () => {
     instance.pop()
+
     expect(instance.popFirst()).toEqual(null)
     expect(instance.head).toEqual(null)
     expect(instance.tail).toEqual(null)
@@ -143,6 +146,7 @@ describe('LinkedList popFirst method', () => {
 
   it('should return first node when there are two nodes', () => {
     instance.append('zz')
+
     expect(instance.popFirst()?.value).toEqual('z')
     expect(instance.head?.value).toEqual('zz')
     expect(instance.tail?.value).toEqual('zz')
@@ -154,5 +158,31 @@ describe('LinkedList popFirst method', () => {
     expect(instance.head).toEqual(null)
     expect(instance.tail).toEqual(null)
     expect(instance.length).toBe(0)
+  })
+})
+
+describe('LinkedList get method', () => {
+  let instance: LinkedList
+
+  beforeEach(() => {
+    instance = new LinkedList('z')
+  })
+
+  it('should return node for that index', () => {
+    instance.append('a')
+
+    expect(instance.get(0)?.value).toBe('z')
+    expect(instance.get(1)?.value).toBe('a')
+  })
+
+  it('should return null when the index is out of range', () => {
+    expect(instance.get(-1)).toEqual(null)
+    expect(instance.get(1)).toEqual(null)
+  })
+
+  it('should return null when the list is empty', () => {
+    instance.pop()
+
+    expect(instance.get(0)).toEqual(null)
   })
 })
