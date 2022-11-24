@@ -108,4 +108,13 @@ export class LinkedList {
       return temp
     }
   }
+
+  set(index: number, value: unknown): boolean {
+    const temp = this.get(index)
+    if (!temp) {
+      return false
+    }
+    temp.value = value
+    return true
+  }
 }
