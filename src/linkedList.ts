@@ -1,4 +1,9 @@
-import { Node } from './node'
+export class Node {
+  next: Node | null
+  constructor(public value: unknown) {
+    this.next = null
+  }
+}
 
 export class LinkedList {
   head: Node | null
@@ -76,7 +81,7 @@ export class LinkedList {
     return true
   }
 
-  popFirst() {
+  popFirst(): Node | null {
     if (!this.head) {
       return null
     }
@@ -88,5 +93,28 @@ export class LinkedList {
       this.tail = null
     }
     return temp
+  }
+
+  get(index: number): Node | null {
+    if (index < 0 || index > this.length - 1) {
+      return null
+    } else {
+      let temp = this.head
+      for (let i = 0; i < index; i++) {
+        if (temp) {
+          temp = temp.next
+        }
+      }
+      return temp
+    }
+  }
+
+  set(index: number, value: unknown): boolean {
+    const temp = this.get(index)
+    if (!temp) {
+      return false
+    }
+    temp.value = value
+    return true
   }
 }
