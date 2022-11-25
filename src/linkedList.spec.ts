@@ -223,3 +223,40 @@ describe('LinkedList set method', () => {
     expect(instance.get(0)).toEqual(null)
   })
 })
+
+describe('LinkedList insert method', () => {
+  let instance: LinkedList
+
+  beforeEach(() => {
+    instance = new LinkedList('z')
+  })
+
+  it('should return false when the index is out of range', () => {
+    expect(instance.insert(-1, 'zz')).toBe(false)
+    expect(instance.insert(2, 'zz')).toEqual(false)
+    expect(instance.length).toBe(1)
+  })
+
+  it('should return true inserting at index 0', () => {
+    expect(instance.insert(0, 'zz')).toBe(true)
+    expect(instance.get(0)?.value).toBe('zz')
+    expect(instance.get(1)?.value).toBe('z')
+    expect(instance.length).toBe(2)
+  })
+
+  it('should return true inserting at the end', () => {
+    expect(instance.insert(1, 'zz')).toBe(true)
+    expect(instance.get(0)?.value).toBe('z')
+    expect(instance.get(1)?.value).toBe('zz')
+    expect(instance.length).toBe(2)
+  })
+
+  it('should return true when inserting', () => {
+    instance.append('zzz')
+    expect(instance.insert(1, 'zz')).toBe(true)
+    expect(instance.get(0)?.value).toEqual('z')
+    expect(instance.get(1)?.value).toEqual('zz')
+    expect(instance.get(2)?.value).toEqual('zzz')
+    expect(instance.length).toBe(3)
+  })
+})
