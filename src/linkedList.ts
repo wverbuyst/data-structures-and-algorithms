@@ -117,4 +117,24 @@ export class LinkedList {
     temp.value = value
     return true
   }
+
+  insert(index: number, value: unknown) {
+    if (index < 0 || index > this.length) {
+      return false
+    }
+    if (index === 0) {
+      return this.prepend(value)
+    }
+    if (index === this.length) {
+      return this.append(value)
+    }
+    const newNode = new Node(value)
+    const temp = this.get(index - 1)
+    if (temp) {
+      newNode.next = temp.next
+      temp.next = newNode
+      this.length++
+      return true
+    }
+  }
 }
