@@ -33,4 +33,18 @@ export class DoublyLinkedList {
     // eslint-disable-next-line no-console
     console.dir(this, { depth: null })
   }
+
+  append(value: unknown) {
+    const newNode = new Node(value)
+    if (!this.tail) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      this.tail.next = newNode
+      newNode.prev = this.tail
+      this.tail = newNode
+    }
+    this.length++
+    return true
+  }
 }
