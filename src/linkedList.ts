@@ -117,4 +117,44 @@ export class LinkedList {
     temp.value = value
     return true
   }
+
+  insert(index: number, value: unknown) {
+    if (index < 0 || index > this.length) {
+      return false
+    }
+    if (index === 0) {
+      return this.prepend(value)
+    }
+    if (index === this.length) {
+      return this.append(value)
+    }
+    const newNode = new Node(value)
+    const temp = this.get(index - 1)
+    if (temp) {
+      newNode.next = temp.next
+      temp.next = newNode
+      this.length++
+      return true
+    }
+  }
+
+  remove(index: number) {
+    if (index < 0 || index > this.length - 1) {
+      return null
+    }
+    if (index === 0) {
+      return this.popFirst()
+    }
+    if (index === this.length - 1) {
+      return this.pop()
+    }
+    const prev = this.get(index - 1)
+    const temp = prev?.next
+    if (prev && temp) {
+      prev.next = temp?.next
+      temp.next = null
+      this.length--
+      return temp
+    }
+  }
 }
