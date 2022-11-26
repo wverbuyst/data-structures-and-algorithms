@@ -137,4 +137,24 @@ export class LinkedList {
       return true
     }
   }
+
+  remove(index: number) {
+    if (index < 0 || index > this.length - 1) {
+      return null
+    }
+    if (index === 0) {
+      return this.popFirst()
+    }
+    if (index === this.length - 1) {
+      return this.pop()
+    }
+    const prev = this.get(index - 1)
+    const temp = prev?.next
+    if (prev && temp) {
+      prev.next = temp?.next
+      temp.next = null
+      this.length--
+      return temp
+    }
+  }
 }
