@@ -153,4 +153,24 @@ export class LinkedList {
     this.length--
     return temp
   }
+
+  reverse() {
+    if (!this.head) {
+      return
+    }
+    let temp: Node | null = this.head
+    this.head = this.tail
+    this.tail = temp
+
+    let after: Node | null = this.head
+    let before: Node | null = null
+    for (let i = 0; i < this.length; i++) {
+      if (temp) {
+        after = temp.next
+        temp.next = before
+        before = temp
+        temp = after
+      }
+    }
+  }
 }
