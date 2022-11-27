@@ -58,6 +58,33 @@ describe('DoublyLinkedList print list', () => {
   })
 })
 
+describe('DoublyLinkedList append method', () => {
+  const instance = new DoublyLinkedList('z')
+
+  it('should append when list is empty', () => {
+    instance.pop()
+    instance.append('a')
+
+    expect(instance.head?.value).toBe('a')
+    expect(instance.tail?.value).toBe('a')
+    expect(instance.length).toBe(1)
+  })
+
+  it.each([
+    ['b', 2],
+    ['c', 3],
+    ['d', 4],
+    ['e', 5],
+    ['f', 6],
+  ])("should append '%s'", (value, expected) => {
+    instance.append(value)
+
+    expect(instance.head?.value).toBe('a')
+    expect(instance.tail?.value).toBe(value)
+    expect(instance.length).toBe(expected)
+  })
+})
+
 describe('DoublyLinkedList pop method', () => {
   const instance = new DoublyLinkedList('a')
   instance.append('b')
