@@ -118,7 +118,7 @@ export class LinkedList {
     return true
   }
 
-  insert(index: number, value: unknown) {
+  insert(index: number, value: unknown): boolean {
     if (index < 0 || index > this.length) {
       return false
     }
@@ -129,16 +129,14 @@ export class LinkedList {
       return this.append(value)
     }
     const newNode = new Node(value)
-    const temp = this.get(index - 1)
-    if (temp) {
-      newNode.next = temp.next
-      temp.next = newNode
-      this.length++
-      return true
-    }
+    const temp = this.get(index - 1) as Node
+    newNode.next = temp.next
+    temp.next = newNode
+    this.length++
+    return true
   }
 
-  remove(index: number) {
+  remove(index: number): Node | null {
     if (index < 0 || index > this.length - 1) {
       return null
     }
@@ -148,13 +146,31 @@ export class LinkedList {
     if (index === this.length - 1) {
       return this.pop()
     }
-    const prev = this.get(index - 1)
-    const temp = prev?.next
-    if (prev && temp) {
-      prev.next = temp?.next
-      temp.next = null
-      this.length--
-      return temp
+    const prev = this.get(index - 1) as Node
+    const temp = prev.next as Node
+    prev.next = temp.next
+    temp.next = null
+    this.length--
+    return temp
+  }
+
+  reverse(): void {
+    if (!this.head) {
+      return
+    }
+    let temp: Node | null = this.head
+    this.head = this.tail
+    this.tail = temp
+
+    let after: Node | null = this.head
+    let before: Node | null = null
+    for (let i = 0; i < this.length; i++) {
+      if (temp) {
+        after = temp.next
+        temp.next = before
+        before = temp
+        temp = after
+      }
     }
   }
 }

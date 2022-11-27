@@ -7,7 +7,7 @@
     "compile": "tsc",
     "dev": "nodemon",
     "lint": "eslint . --ext .ts",
-    "start": "ts-node ./src/index.ts",
+    "start": "ts-node ./src/linkedList.ts",
     "prepare": "husky install",
     "test": "jest",
     "test:coverage": "jest --coverage",

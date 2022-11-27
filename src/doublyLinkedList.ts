@@ -34,7 +34,7 @@ export class DoublyLinkedList {
     console.dir(this, { depth: null })
   }
 
-  append(value: unknown) {
+  append(value: unknown): boolean {
     const newNode = new Node(value)
     if (!this.tail) {
       this.head = newNode
@@ -46,5 +46,22 @@ export class DoublyLinkedList {
     }
     this.length++
     return true
+  }
+
+  pop(): Node | null {
+    if (this.length === 0) {
+      return null
+    }
+    const temp = this.tail as Node
+    if (this.length === 1) {
+      this.head = null
+      this.tail = null
+    } else {
+      this.tail = this.tail?.prev as Node
+      this.tail.next = null
+      temp.prev = null
+    }
+    this.length--
+    return temp
   }
 }
