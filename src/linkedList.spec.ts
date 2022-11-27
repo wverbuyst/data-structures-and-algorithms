@@ -296,3 +296,29 @@ describe('LinkedList remove method', () => {
     expect(instance.length).toBe(2)
   })
 })
+
+describe('LinkedList reverse method', () => {
+  let instance: LinkedList
+
+  beforeEach(() => {
+    instance = new LinkedList('z')
+  })
+
+  it('should return the same when length is zero', () => {
+    instance.pop()
+    instance.reverse()
+    expect(instance.head).toBe(null)
+    expect(instance.head).toEqual(null)
+    expect(instance.length).toBe(0)
+  })
+
+  it('should return reversed list', () => {
+    instance.append('zz')
+    instance.append('zzz')
+    instance.reverse()
+    expect(instance.head?.value).toBe('zzz')
+    expect(instance.head?.next?.value).toBe('zz')
+    expect(instance.tail?.value).toBe('z')
+    expect(instance.length).toBe(3)
+  })
+})
