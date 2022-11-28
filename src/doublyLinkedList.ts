@@ -65,7 +65,7 @@ export class DoublyLinkedList {
     return temp
   }
 
-  prepend(value: unknown) {
+  prepend(value: unknown): boolean {
     const newNode = new Node(value)
     if (!this.head) {
       this.head = newNode
@@ -77,5 +77,22 @@ export class DoublyLinkedList {
     }
     this.length++
     return true
+  }
+
+  popFirst(): Node | null {
+    if (!this.head) {
+      return null
+    }
+    const temp = this.head
+    if (this.length === 1) {
+      this.head = null
+      this.tail = null
+    } else {
+      this.head = this.head.next as Node
+      this.head.prev = null
+      temp.next = null
+    }
+    this.length--
+    return temp
   }
 }
