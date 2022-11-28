@@ -154,7 +154,7 @@ export class LinkedList {
     return temp
   }
 
-  reverse() {
+  reverse(): void {
     if (!this.head) {
       return
     }
