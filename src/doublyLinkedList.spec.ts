@@ -174,3 +174,40 @@ describe('DoublyLinkedList popFirst method', () => {
     expect(instance.length).toBe(0)
   })
 })
+
+describe('DoublyLinkedList get method', () => {
+  let instance: DoublyLinkedList
+
+  beforeEach(() => {
+    instance = new DoublyLinkedList('z')
+  })
+
+  it('should return node for that index, when there are only 2 elements', () => {
+    instance.append('a')
+
+    expect(instance.get(0)?.value).toBe('z')
+    expect(instance.get(1)?.value).toBe('a')
+  })
+
+  it('should return node for that index', () => {
+    instance.append('a')
+    instance.append('b')
+    instance.append('c')
+
+    expect(instance.get(0)?.value).toBe('z')
+    expect(instance.get(1)?.value).toBe('a')
+    expect(instance.get(2)?.value).toBe('b')
+    expect(instance.get(3)?.value).toBe('c')
+  })
+
+  it('should return null when the index is out of range', () => {
+    expect(instance.get(-1)).toEqual(null)
+    expect(instance.get(1)).toEqual(null)
+  })
+
+  it('should return null when the list is empty', () => {
+    instance.pop()
+
+    expect(instance.get(0)).toEqual(null)
+  })
+})
