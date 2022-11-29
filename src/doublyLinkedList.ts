@@ -95,4 +95,26 @@ export class DoublyLinkedList {
     this.length--
     return temp
   }
+
+  get(index: number): Node | null {
+    if (index < 0 || index > this.length - 1) {
+      return null
+    }
+    let temp = this.head
+    if (index < this.length / 2) {
+      for (let i = 0; i < index; i++) {
+        if (temp) {
+          temp = temp.next
+        }
+      }
+    } else {
+      temp = this.tail
+      for (let i = this.length - 1; i > index; i--) {
+        if (temp) {
+          temp = temp.prev
+        }
+      }
+    }
+    return temp
+  }
 }
