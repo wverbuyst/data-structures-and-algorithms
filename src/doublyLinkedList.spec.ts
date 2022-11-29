@@ -114,3 +114,100 @@ describe('DoublyLinkedList pop method', () => {
     expect(instance.length).toBe(0)
   })
 })
+
+describe('DoublyLinkedList prepend method', () => {
+  const instance = new DoublyLinkedList('z')
+
+  it('should prepend when list is empty', () => {
+    instance.pop()
+    instance.prepend('a')
+
+    expect(instance.head?.value).toBe('a')
+    expect(instance.tail?.value).toBe('a')
+    expect(instance.length).toBe(1)
+  })
+
+  it.each([
+    ['b', 2],
+    ['c', 3],
+    ['d', 4],
+    ['e', 5],
+    ['f', 6],
+  ])("should prepend '%s'", (value, expected) => {
+    instance.prepend(value)
+
+    expect(instance.head?.value).toBe(value)
+    expect(instance.tail?.value).toBe('a')
+    expect(instance.length).toBe(expected)
+  })
+})
+
+describe('DoublyLinkedList popFirst method', () => {
+  let instance: DoublyLinkedList
+
+  beforeEach(() => {
+    instance = new DoublyLinkedList('z')
+  })
+
+  it('should return null when list is empty', () => {
+    instance.pop()
+
+    expect(instance.popFirst()).toEqual(null)
+    expect(instance.head).toEqual(null)
+    expect(instance.tail).toEqual(null)
+    expect(instance.length).toBe(0)
+  })
+
+  it('should return first node when there are two nodes', () => {
+    instance.append('zz')
+
+    expect(instance.popFirst()?.value).toEqual('z')
+    expect(instance.head?.value).toEqual('zz')
+    expect(instance.tail?.value).toEqual('zz')
+    expect(instance.length).toBe(1)
+  })
+
+  it('should return node when there is one node', () => {
+    expect(instance.popFirst()?.value).toEqual('z')
+    expect(instance.head).toEqual(null)
+    expect(instance.tail).toEqual(null)
+    expect(instance.length).toBe(0)
+  })
+})
+
+describe('DoublyLinkedList get method', () => {
+  let instance: DoublyLinkedList
+
+  beforeEach(() => {
+    instance = new DoublyLinkedList('z')
+  })
+
+  it('should return node for that index, when there are only 2 elements', () => {
+    instance.append('a')
+
+    expect(instance.get(0)?.value).toBe('z')
+    expect(instance.get(1)?.value).toBe('a')
+  })
+
+  it('should return node for that index', () => {
+    instance.append('a')
+    instance.append('b')
+    instance.append('c')
+
+    expect(instance.get(0)?.value).toBe('z')
+    expect(instance.get(1)?.value).toBe('a')
+    expect(instance.get(2)?.value).toBe('b')
+    expect(instance.get(3)?.value).toBe('c')
+  })
+
+  it('should return null when the index is out of range', () => {
+    expect(instance.get(-1)).toEqual(null)
+    expect(instance.get(1)).toEqual(null)
+  })
+
+  it('should return null when the list is empty', () => {
+    instance.pop()
+
+    expect(instance.get(0)).toEqual(null)
+  })
+})
