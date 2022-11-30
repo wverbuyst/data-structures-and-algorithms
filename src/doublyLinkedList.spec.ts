@@ -273,3 +273,39 @@ describe('DoublyLinkedList insert method', () => {
     expect(instance.length).toBe(3)
   })
 })
+
+describe('DoublyLinkedList remove method', () => {
+  let instance: DoublyLinkedList
+
+  beforeEach(() => {
+    instance = new DoublyLinkedList('z')
+  })
+
+  it('should return null when the index is out of range', () => {
+    expect(instance.remove(-1)).toBe(null)
+    expect(instance.remove(2)).toEqual(null)
+    expect(instance.length).toBe(1)
+  })
+
+  it('should return node removed at index 0', () => {
+    expect(instance.remove(0)?.value).toBe('z')
+    expect(instance.get(0)).toBe(null)
+    expect(instance.length).toBe(0)
+  })
+
+  it('should return node removed at the end', () => {
+    instance.append('zz')
+    expect(instance.get(0)?.value).toBe('z')
+    expect(instance.remove(1)?.value).toBe('zz')
+    expect(instance.length).toBe(1)
+  })
+
+  it('should return node when removing', () => {
+    instance.append('zz')
+    instance.append('zzz')
+    expect(instance.remove(1)?.value).toBe('zz')
+    expect(instance.get(0)?.value).toEqual('z')
+    expect(instance.get(1)?.value).toEqual('zzz')
+    expect(instance.length).toBe(2)
+  })
+})
