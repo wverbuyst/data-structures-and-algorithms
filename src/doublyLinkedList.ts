@@ -117,4 +117,13 @@ export class DoublyLinkedList {
     }
     return temp
   }
+
+  set(index: number, value: unknown): boolean {
+    const temp = this.get(index)
+    if (temp) {
+      temp.value = value
+      return true
+    }
+    return false
+  }
 }
