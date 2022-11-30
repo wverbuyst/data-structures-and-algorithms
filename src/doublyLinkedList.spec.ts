@@ -211,3 +211,28 @@ describe('DoublyLinkedList get method', () => {
     expect(instance.get(0)).toEqual(null)
   })
 })
+
+describe('DoublyLinkedList set method', () => {
+  let instance: DoublyLinkedList
+
+  beforeEach(() => {
+    instance = new DoublyLinkedList('z')
+  })
+
+  it('should return true if node exists at the index', () => {
+    expect(instance.set(0, 'zz')).toBe(true)
+    expect(instance.get(0)?.value).toBe('zz')
+  })
+
+  it('should return false when the index is out of range', () => {
+    expect(instance.set(-1, 'zz')).toBe(false)
+    expect(instance.set(1, 'zz')).toEqual(false)
+  })
+
+  it('should return false when the list is empty', () => {
+    instance.pop()
+
+    expect(instance.set(0, 'a')).toEqual(false)
+    expect(instance.get(0)).toEqual(null)
+  })
+})
