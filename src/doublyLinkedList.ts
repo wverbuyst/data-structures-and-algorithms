@@ -126,4 +126,28 @@ export class DoublyLinkedList {
     }
     return false
   }
+
+  insert(index: number, value: unknown): boolean {
+    if (index < 0 || index > this.length) {
+      return false
+    }
+    if (index === 0) {
+      return this.prepend(value)
+    }
+    if (index === this.length) {
+      return this.append(value)
+    }
+    const newNode = new Node(value)
+
+    const before = this.get(index - 1) as Node
+    const after = before?.next as Node
+
+    before.next = newNode
+    newNode.prev = before
+    after.prev = newNode
+    newNode.next = after
+
+    this.length++
+    return true
+  }
 }
