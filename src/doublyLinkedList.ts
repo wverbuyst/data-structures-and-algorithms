@@ -117,4 +117,61 @@ export class DoublyLinkedList {
     }
     return temp
   }
+
+  set(index: number, value: unknown): boolean {
+    const temp = this.get(index)
+    if (temp) {
+      temp.value = value
+      return true
+    }
+    return false
+  }
+
+  insert(index: number, value: unknown): boolean {
+    if (index < 0 || index > this.length) {
+      return false
+    }
+    if (index === 0) {
+      return this.prepend(value)
+    }
+    if (index === this.length) {
+      return this.append(value)
+    }
+    const newNode = new Node(value)
+
+    const before = this.get(index - 1) as Node
+    const after = before?.next as Node
+
+    before.next = newNode
+    newNode.prev = before
+    after.prev = newNode
+    newNode.next = after
+
+    this.length++
+    return true
+  }
+
+  remove(index: number): Node | null {
+    if (index < 0 || index > this.length - 1) {
+      return null
+    }
+    if (index === 0) {
+      return this.popFirst()
+    }
+    if (index === this.length - 1) {
+      return this.pop()
+    }
+
+    const temp = this.get(index) as Node
+
+    if (temp.next && temp.prev) {
+      temp.next.prev = temp.prev
+      temp.prev.next = temp.next
+      temp.prev = null
+      temp.next = null
+    }
+
+    this.length--
+    return temp
+  }
 }
