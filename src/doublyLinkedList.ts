@@ -150,4 +150,28 @@ export class DoublyLinkedList {
     this.length++
     return true
   }
+
+  remove(index: number): Node | null {
+    if (index < 0 || index > this.length - 1) {
+      return null
+    }
+    if (index === 0) {
+      return this.popFirst()
+    }
+    if (index === this.length - 1) {
+      return this.pop()
+    }
+
+    const temp = this.get(index) as Node
+
+    if (temp.next && temp.prev) {
+      temp.next.prev = temp.prev
+      temp.prev.next = temp.next
+      temp.prev = null
+      temp.next = null
+    }
+
+    this.length--
+    return temp
+  }
 }
