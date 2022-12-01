@@ -33,4 +33,17 @@ export class Stack {
     // eslint-disable-next-line no-console
     console.dir(this, { depth: null })
   }
+
+  push(value: unknown): boolean {
+    const newNode = new Node(value)
+    if (this.height === 0) {
+      this.top = newNode
+    } else {
+      newNode.next = this.top
+      this.top = newNode
+    }
+
+    this.height++
+    return true
+  }
 }
