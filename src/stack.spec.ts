@@ -54,3 +54,28 @@ describe('Stack printStack', () => {
     expect(consoleDirMock).toBeCalledWith(instance, { depth: null })
   })
 })
+
+describe('Stack push method', () => {
+  const instance = new Stack('z')
+
+  it('should append when list is empty', () => {
+    instance.pop()
+    instance.push('a')
+
+    expect(instance.top?.value).toBe('a')
+    expect(instance.height).toBe(1)
+  })
+
+  it.each([
+    ['b', 2],
+    ['c', 3],
+    ['d', 4],
+    ['e', 5],
+    ['f', 6],
+  ])("should append '%s'", (value, expected) => {
+    instance.push(value)
+
+    expect(instance.top?.value).toBe(value)
+    expect(instance.height).toBe(expected)
+  })
+})
