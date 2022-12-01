@@ -17,4 +17,20 @@ export class Stack {
     this.top = newNode
     this.height = 1
   }
+
+  printElements(): void {
+    let temp = this.top
+    let i = 0
+    while (i < this.height) {
+      // eslint-disable-next-line no-console
+      console.log(`Element ${i + 1}: ${temp?.value}`)
+      temp = temp?.next || null
+      i++
+    }
+  }
+
+  printStack(): void {
+    // eslint-disable-next-line no-console
+    console.dir(this, { depth: null })
+  }
 }
