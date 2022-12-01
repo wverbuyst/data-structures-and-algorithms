@@ -79,3 +79,30 @@ describe('Stack push method', () => {
     expect(instance.height).toBe(expected)
   })
 })
+
+describe('Stack pop method', () => {
+  const instance = new Stack('a')
+  instance.push('b')
+  instance.push('c')
+
+  it.each([
+    ['c', 2, 'b'],
+    ['b', 1, 'a'],
+  ])("should pop '%s'", (value, height, top) => {
+    expect(instance.pop()?.value).toBe(value)
+    expect(instance.top?.value).toBe(top)
+    expect(instance.height).toBe(height)
+  })
+
+  it('should pop last element', () => {
+    expect(instance.pop()?.value).toBe('a')
+    expect(instance.top).toEqual(null)
+    expect(instance.height).toBe(0)
+  })
+
+  it('should return null when stack is empty', () => {
+    expect(instance.pop()).toEqual(null)
+    expect(instance.top).toEqual(null)
+    expect(instance.height).toBe(0)
+  })
+})
