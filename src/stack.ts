@@ -46,4 +46,15 @@ export class Stack {
     this.height++
     return true
   }
+
+  pop(): Node | null {
+    if (!this.top) {
+      return null
+    }
+    const temp = this.top
+    this.top = this.top.next
+    temp.next = null
+    this.height--
+    return temp
+  }
 }
